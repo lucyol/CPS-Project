@@ -16,9 +16,14 @@ public interface GameEngService {
 	
 	public int getNbTurns(); 
 	
-	public int getLemmingSaved(); 
+	public List<Lemming> getColony(); 
 	
-	public int getLemmingCreated(); 
+	public Lemming getLemming(int n); 
+	
+	public int getSaved(); 
+	
+	public int getSpawned(); 
+	
 	
 	
 	/* Invariant */
