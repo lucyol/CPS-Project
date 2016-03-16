@@ -1,4 +1,4 @@
-<project name="bridge" default="compile" basedir=".">
+<project name="lemmings" default="compile" basedir=".">
     <description>
        Fichier de construction pour le Projet CPS Lemmings
     </description>
@@ -35,7 +35,7 @@
         description="Generer la distribution" >
     <!-- tout mettre dans l'archive -->
     <jar basedir=".." jarfile="../TME6-Lemmings-${nom1}-${nom2}-${DSTAMP}.jar"
-    includes="TME4-Bridge/**/*" excludes="**/CVS"/>
+    includes="TME6-Lemmings/**/*" excludes="**/CVS"/>
   </target>
 
   <target name="clean"

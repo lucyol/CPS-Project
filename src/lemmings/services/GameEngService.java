@@ -1,5 +1,7 @@
 package lemmings.services;
 
+import java.awt.List;
+
 public interface GameEngService {
 	
 	/* Observators */

@@ -6,6 +6,8 @@
   - const width : [Level] -> int
   - editing : [Level] -> bool
   - nature : [Level] x int x int -> Nature
+  - entrance : [Level] -> (int,int)
+  - exit : [Level] -> (int,int) 
 
 - **Constructors** :
   - init : int x int -> [Level] 
