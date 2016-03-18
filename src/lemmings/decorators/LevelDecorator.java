@@ -4,59 +4,64 @@ import lemmings.services.LevelService;
 import lemmings.services.Nature;
 
 public class LevelDecorator implements LevelService {
+	
+	private LevelService delegate;
+	
+	public LevelDecorator(LevelService delegate){
+		this.delegate = delegate; 
+	}
 
-	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return delegate.getHeight();
 	}
 
-	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return delegate.getWidth();
 	}
 
-	@Override
 	public boolean isEditing() {
-		// TODO Auto-generated method stub
-		return false;
+		return delegate.isEditing();
 	}
 
-	@Override
 	public Nature getNature(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		return delegate.getNature(x, y);
 	}
 
-	@Override
+	public int getEntranceX() {
+		return delegate.getEntranceX();
+	}
+
+	public int getEntranceY() {
+		return delegate.getEntranceY();
+	}
+
+	public int getExitX() {
+		return delegate.getExitX();
+	}
+
+	public int getExitY() {
+		return delegate.getExitY();
+	}
+
 	public void init(int h, int w) {
-		// TODO Auto-generated method stub
-		
+		delegate.init(h, w);
 	}
 
-	@Override
 	public void setNature(int x, int y, Nature n) {
-		// TODO Auto-generated method stub
-		
+		delegate.setNature(x, y, n);
 	}
 
-	@Override
-	public void goPlay() {
-		// TODO Auto-generated method stub
-		
+	public void goPlay(int xe, int ye, int xs, int ys) {
+		delegate.goPlay(xe, ye, xs, ys);
 	}
 
-	@Override
 	public void remove(int x, int y) {
-		// TODO Auto-generated method stub
-		
+		delegate.remove(x, y);
 	}
 
-	@Override
 	public void build(int x, int y) {
-		// TODO Auto-generated method stub
-		
-	}
+		delegate.build(x, y);
+	} 
 
+	
 }

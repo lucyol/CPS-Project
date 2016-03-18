@@ -5,67 +5,84 @@ import lemmings.services.Nature;
 
 public class Level implements 
 	/*provides*/ LevelService {
+	
+	
+	private int height; 
+	private int width; 
+	private boolean editing; 
+	private Nature[][] nature; 
+	private int entranceX; 
+	private int entranceY; 
+	private int exitX; 
+	private int exitY; 
 
-	@Override
+	
+	public Level(){
+		
+	}
+	
+	/* Observators */
+	
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return height;
 	}
-
-	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return width;
 	}
-
-	@Override
 	public boolean isEditing() {
-		// TODO Auto-generated method stub
-		return false;
+		return editing;
+	}
+	public int getEntranceX() {
+		return entranceX;
+	}
+	public int getEntranceY() {
+		return entranceY;
+	}
+	public int getExitX() {
+		return exitX;
+	}
+	public int getExitY() {
+		return exitY;
+	}
+	public Nature getNature(int x, int y){
+		return nature[x][y]; 
+	}
+	
+	
+	/* Initializer */
+	
+	public void init(int h, int w){
+		height = h; 
+		width = w;
+		nature = new Nature[h][w]; 
+		for(int i = 0; i < h; i++){
+			for(int j = 0; j < w; j++){
+				nature[i][j] = Nature.EMPTY; 
+			}
+		}
+		editing = true; 
+	}
+	
+	/* Operators */
+	
+	public void goPlay(int xe, int ye, int xs, int ys){
+		entranceX = xe; 
+		entranceY = ye; 
+		exitX = xs; 
+		exitY = ys; 
+		editing = false; 	
+	}
+	
+	public void remove(int x, int y){
+		nature[x][y] = Nature.EMPTY; 
+	}
+	
+	public void build(int x,int y){
+		nature[x][y] = Nature.DIRT;
 	}
 
-	@Override
-	public Nature getNature(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void init(int h, int w) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void setNature(int x, int y, Nature n) {
-		// TODO Auto-generated method stub
-
+		nature[x][y] = n; 
 	}
-
-	@Override
-	public void goPlay() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void remove(int x, int y) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void build(int x, int y) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 }

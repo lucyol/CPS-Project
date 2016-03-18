@@ -22,23 +22,23 @@ public interface GameEngService {
 	public boolean isGameOver(); 	
 	public Score getScore(); 	
 	public int getNbTurns(); 	
-	public List<Lemming> getLemmings(); 
+	public List<LemmingService> getLemmings(); 
 	
 	/*
 	 * pre: 
 	 * 		pre getLemming(G,i) require i >= 0 and card(lemmings(G)) > i
 	 */	
-	public Lemming getLemming(int n); 	
+	public LemmingService getLemming(int n); 	
 	public int getSaved(); 	
 	public int getSpawned(); 
-
+	public LevelService getLevel(); 
 		
 	/* Invariant */
 	
 	/*
-	 *  spawned(G) min= card(lemmings(G)) + saved(G) + dead(G)
-     *  gameOver(G) min= (card(lemmings(G)) == 0 && spawned(G) == sizeColony(G))
-    -*  obstacle(G,x,y) min= Level::nature(level(G),x,y) != EMPTY	
+	 *  getSpawned() min= getLemmings().size() + getSaved() + getDead()
+     *  isGameOver() min= (lemmings().size() == 0 && getSpawned() == getSizeColony())
+    -*  obstacle(x,y) min= getLevel().getNature(x,y) != EMPTY	
 	 */
 	
 	
@@ -51,7 +51,7 @@ public interface GameEngService {
 	 * 		getSpawnSpeed() = sp
 	 * 		getLemmingCreated() = 0
 	 * 		getLemmingSaved() = 0
-	 *  	getDead() = 0
+	 *  	getDead() = 0y
      *		isGameOver() = false 
      * 		getLemmings() = empty List
 	 */

@@ -19,7 +19,7 @@ public interface LevelService {
 	/* Initializer */
 	
 	/*
-	 * pre :  h > 10 && w > 10
+	 * pre :  h > 5 && w > 10
 	 */	
 	public void init(int h, int w); 
 	
@@ -45,10 +45,10 @@ public interface LevelService {
 	 *		isEditing() == true
 	 *		for i == x and j == y  getNature(i,j) = n   
 	 *      for i != x or j != y getNature(i,j) = getNature(i,j)@pre 
-	 *      getEntranceX() == null
-	 *      getEntranceY() == null
-	 *      getExitX() == null
-	 *      getExitY() == null
+	 *      getEntranceX() == 0
+	 *      getEntranceY() == 0
+	 *      getExitX() == 0
+	 *      getExitY() == 0
 	 */
 	public void setNature(int x, int y, Nature n);
 	
@@ -61,7 +61,7 @@ public interface LevelService {
 	 *  	getNature(xs, ys) == EMPTY
 	 *     	getNature(xe, ye - 1) == EMPTY 
 	 *     	getNature(xe, ye + 1) == EMPTY
-	 *		getNature(xs, ys + 1) == EMPTY 
+	 *		getNature(xs, ys - 1) == EMPTY 
 	 *		getNature(xs, ys + 1) == METAL
 	 *		isEditing() == true
 	 *		for(int i = 0; i < getHeight(); i++){
