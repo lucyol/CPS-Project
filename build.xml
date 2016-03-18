@@ -34,8 +34,8 @@
   <target name="dist" depends="init,clean"
         description="Generer la distribution" >
     <!-- tout mettre dans l'archive -->
-    <jar basedir=".." jarfile="../TME6-Lemmings-${nom1}-${nom2}-${DSTAMP}.jar"
-    includes="TME6-Lemmings/**/*" excludes="**/CVS"/>
+    <jar basedir=".." jarfile="../TME7-Lemmings-${nom1}-${nom2}-${DSTAMP}.jar"
+    includes="Projet/**/*" excludes="**/CVS"/>
   </target>
 
   <target name="clean"

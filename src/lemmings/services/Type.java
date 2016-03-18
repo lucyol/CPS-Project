@@ -1,5 +1,5 @@
 package lemmings.services;
 
-public enum Status {
+public enum Type {
 
 }
