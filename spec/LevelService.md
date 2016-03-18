@@ -47,12 +47,12 @@
         - editing(setNature(l,x,y,n))=true
         - nature(setNature(l,x,y,n),x,y) = n 
 	- nature(setNature(l,x,y,n),z,w) = nature(l,z,w) for (z,w)!=(x,y)
-	- entranceX(setNature(l,x,y)) = entranceX(l,x,y)
-	- entranceY(setNature(l,x,y)) = entranceY(l,x,y)
-	- exitX(setNature(l,x,y)) = exitX(l,x,y)
-	- exitY(setNature(l,x,y)) = exitY(l,x,y)
+	- entranceX(setNature(l,x,y)) = null
+	- entranceY(setNature(l,x,y)) = null
+	- exitX(setNature(l,x,y)) = null
+	- exitY(setNature(l,x,y)) = null
 
-  - [goPlay]
+   - [goPlay]
         - editing(goPlay(L,xe,ye,se,ye)) = false
         - nature(goPlay(L,xe,ye,se,ye),x,y) = nature(L,x,y) 	
 	- entranceX(goPlay(L,xe,ye,se,ye)) = xe

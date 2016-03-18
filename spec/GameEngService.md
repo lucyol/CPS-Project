@@ -4,7 +4,7 @@
 
 - **Observators**:
   - obstacle : [GameEng] * int * int -> bool 
-    - pre: obstacle(G,i,j) require i < Level::height(L) and j < Level::width(L) 
+    - pre: obstacle(G,i,j) require i < Level::height(level(G)) and j < Level::width(level(G)) 
   - const sizeColony : [GameEng] -> int
   - nbTurn :[GameEng] -> int
   - const spawnspeed : [GameEng] -> int
@@ -30,7 +30,9 @@
   - spawn : [GameEng] -> [GameEng]
     - pre: spawn(G) require spawned(G) < sizeColony(G)
   - kill : [GameEng] * Lemming -> [GameEng]
+    - pre : kill(G,l) require l is in lemmings
   - save : [GameEng] * Lemming -> [GameEng]
+    - pre: save(G,l) require l is in lemmings
 
 - **Observations**:
   - [inv]

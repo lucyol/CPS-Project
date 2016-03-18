@@ -11,7 +11,7 @@
   - falling: [Lemming] -> int
 
 - **Constructors** :
-  - init: GameEng -> [Lemming]
+  - init: int * int -> [Lemming]
 
 - **Operators** : 
   - step : [Lemming] -> [Lemming]
@@ -23,12 +23,12 @@
   - [inv]
 
   - [init]
-    - type(init(G)) = WALKER
-    - direction(init(G)) = RIGHT
-    - x(init(G)) = GameEng::entranceX(G)
-    - y(init(G)) = GameEng::entranceY(G) 
-    - gameEngine(init(G)) = G
-    - falling(init(G)) = 0
+    - type(init(x,y)) = WALKER
+    - direction(init(x,y)) = RIGHT
+    - x(init(x,y)) = x
+    - y(init(x,y)) = y
+    - gameEngine(init(x,y)) = null
+    - falling(init(x,y)) = 0
 
   - [changeType]
     - type(changeType(L,t) = t
@@ -46,21 +46,21 @@
 
   - [step]
     - if type(L) == WALKER then
-      	 if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == false then 
+      	 -if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == false then 
 	    - type(step(L)) = FALLER
 	    - direction(step(L)) = direction(L)
 	    - x(step(L)) = x(L)
 	    - y(step(L)) = y(L)
 	    - falling(step(L)) = 0
-	 else if type(L) == RIGHT then
-	    if GameEng::obstacle(gameEng(L),x(L)+1,y(L)-1) == true || 
+	 -else if direction(L) == RIGHT then
+	    -if GameEng::obstacle(gameEng(L),x(L)+1,y(L)-1) == true || 
 	       GameEng::obstacle(gameEng(L),x(L)+1,y(L)) == true && GameEng::obstacle(gameEng(L),x(L)+1,y(L)-2) == true then 
 	          - type(step(L)) = WALKER
 		  - direction(step(L)) = LEFT	    
 		  - x(step(L)) = x(L)
 	    	  - y(step(L)) = y(L)
 		  - falling(step(L)) = 0
-	    else if GameEng::obstacle(gameEng(L),x(L)+1,y(L)) == true 
+	    -else if GameEng::obstacle(gameEng(L),x(L)+1,y(L)) == true 
 	    	    && GameEng::obstacle(gameEng(L),x(L)+1,y(L)-1) == false
 		    && GameEng::obstacle(gameEng(L),x(L)+1,y(L)-2) == false then			    	    	  
 		       - type(step(L)) = WALKER
@@ -68,25 +68,25 @@
 		       - x(step(L)) = x(L)+1
 	    	       - y(step(L)) = y(L)-1
 		       - falling(step(L)) = 0
-	    else if GameEng::obstacle(gameEng(L),x(L)+1,y(L)) == false 
+	    -else if GameEng::obstacle(gameEng(L),x(L)+1,y(L)) == false 
 	    	    && GameEng::obstacle(gameEng(L),x(L)+1,y(L)-1) == false then
 		       - type(step(L)) = WALKER
 		       - direction(step(L)) = RIGHT	    
-		       - x(step(L)) = x(L)
-	    	       - y(step(L)) = y(L)-1 
+		       - x(step(L)) = x(L) + 1
+	    	       - y(step(L)) = y(L) 
 		       - falling(step(L)) = 0
-         else if type(L) == LEFT then idem
+         -else if type(L) == LEFT then idem
 
      - if type(L) == FALLER then
-       	  if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == true && falling(L) < 8 then
+       	  -if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == true && falling(L) < 8 then
 	     - type(step(L)) = WALKER
 	     - direction(step(L)) = direction(L)
 	     - x(step(L)) = x(L)
 	     - y(step(L)) = y(L)
 	     - falling(step(L)) = 0
-	  else if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == true && falling(L) >= 8 then
+	  -else if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == true && falling(L) >= 8 then
 	     - gameEngine(step(L)) = GameEng::kill(L)
-	  else if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == false then
+	  -else if GameEng::obstacle(gameEng(L),x(L),y(L)+1) == false then
 	     - type(step(L)) = FALLER
 	     - direction(step(L)) = direction(L)
 	     - x(step(L)) = x(L)
