@@ -3,10 +3,10 @@
 - **Use**: Level, Lemming
 
 - **Observators**:
-  - obstacle : [GameEng] x int x int -> bool 
+  - obstacle : [GameEng] * int * int -> bool 
     - pre: obstacle(G,i,j) require i < Level::height(L) and j < Level::width(L) 
   - const sizeColony : [GameEng] -> int
-  - nbTurns :[GameEng] -> int
+  - nbTurn :[GameEng] -> int
   - const spawnspeed : [GameEng] -> int
   - gameOver: [GameEng]-> bool
   - score: [GameEng] -> (float,int)
@@ -20,7 +20,7 @@
   - level : [GameEng] -> Level
 
 - **Constructors**:
-  - init : sc x sp -> [GameEng]
+  - init : sc * sp -> [GameEng]
     - pre init(sc,sp) require sc >0 & sp>0
 
 
@@ -29,10 +29,14 @@
     - pre step(G) require gameOver(G) = false
   - spawn : [GameEng] -> [GameEng]
     - pre: spawn(G) require spawned(G) < sizeColony(G)
+  - kill : [GameEng] * Lemming -> [GameEng]
+  - save : [GameEng] * Lemming -> [GameEng]
 
 - **Observations**:
   - [inv]
-    - spawned(G) = card(lemmings(G)) + saved(G) + dead(G)
+    - spawned(G) min= card(lemmings(G)) + saved(G) + dead(G)
+    - gameOver(G) min= (card(lemmings(G)) == 0 && spawned(G) == sizeColony(G))
+    - obstacle(G,x,y) min= Level::nature(level(G),x,y) != EMPTY
 
   - [init]
     - sizeColony(init(sc,sp)) = sc
@@ -45,9 +49,24 @@
     - lemmings(init(sc,sp)) = empty set
 
    - [step]
-     - nbTurns(step(G)) = nbTurns(G) + 1
+     - nbTurn(step(G)) = nbTurn(G) + 1
 
    - [spawn]
-     - 
+     - nbTurn(spawn(G)) = nbTurn(G)
+     - saved(spawn(G)) = saved(G)
+     - dead(spawns(G)) = dead(G) 
+     - lemmings(spawn(G)) = lemmings(G)U{Lemming}
+
+   - [kill]
+     - nbTurn(kill(G,l)) = nbTurn(G)
+     - saved(kill(G,l)) = saved(G)
+     - dead(kill(G,l)) = dead(G) + 1
+     - lemmings(kill(G,l)) = lemmings(G)\{l}
+
+   - [save]
+     - nbTurn(save(G,l)) = nbTurn(G)
+     - saved(save(G,l)) = saved(G) + 1
+     - dead(save(G,l)) = dead(G) 
+     - lemmings(save(G,l)) = lemmings(G)\{l}  
      
 
