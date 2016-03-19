@@ -5,6 +5,7 @@ import java.util.List;
 import lemmings.components.GameEng;
 import lemmings.components.Lemming;
 import lemmings.services.GameEngService;
+import lemmings.services.LemmingService;
 import lemmings.services.LevelService;
 import lemmings.services.Score;
 
@@ -36,15 +37,15 @@ public class GameEngDecorator implements GameEngService {
 		return delegate.getScore();
 	}
 
-	public int getNbTurns() {
-		return delegate.getNbTurns();
+	public int getNbTurn() {
+		return delegate.getNbTurn();
 	}
 
-	public List<Lemming> getLemmings() {
+	public List<LemmingService> getLemmings() {
 		return delegate.getLemmings();
 	}
 
-	public Lemming getLemming(int n) {
+	public LemmingService getLemming(int n) {
 		return delegate.getLemming(n);
 	}
 
@@ -54,6 +55,10 @@ public class GameEngDecorator implements GameEngService {
 
 	public int getSpawned() {
 		return delegate.getSpawned();
+	}
+	
+	public int getDead(){
+		return delegate.getDead(); 
 	}
 
 	public LevelService getLevel() {
@@ -68,11 +73,11 @@ public class GameEngDecorator implements GameEngService {
 		delegate.spawn();
 	}
 
-	public void kill(Lemming l) {
+	public void kill(LemmingService l) {
 		delegate.kill(l);
 	}
 
-	public void save(Lemming l) {
+	public void save(LemmingService l) {
 		delegate.save(l);
 	}
 

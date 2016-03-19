@@ -12,16 +12,16 @@ public interface GameEngService {
 	 * 		obstacle(G,i,j) require i < Level::height(level(G)) and j < Level::width(level(G)) 
 	 */
 	public boolean isObstacle(int x, int y); 
-	public int getSizeColony(); 	
+	public int getSizeColony(); 
 	public int getSpawnSpeed(); 
+	public boolean isGameOver();
 	
 	/*
 	 * pre: 
 	 * 		score(G) require gameOver(G)
-	 */	
-	public boolean isGameOver(); 	
+	 */		 	
 	public Score getScore(); 	
-	public int getNbTurns(); 	
+	public int getNbTurn(); 	
 	public List<LemmingService> getLemmings(); 
 	
 	/*
@@ -31,6 +31,7 @@ public interface GameEngService {
 	public LemmingService getLemming(int n); 	
 	public int getSaved(); 	
 	public int getSpawned(); 
+	public int getDead(); 
 	public LevelService getLevel(); 
 		
 	/* Invariant */
@@ -49,11 +50,12 @@ public interface GameEngService {
 	 * post: 
 	 * 		getSizeColony() = sc
 	 * 		getSpawnSpeed() = sp
-	 * 		getLemmingCreated() = 0
-	 * 		getLemmingSaved() = 0
+	 * 		getSpawned() = 0
+	 * 		getSaved() = 0
 	 *  	getDead() = 0y
      *		isGameOver() = false 
      * 		getLemmings() = empty List
+     * 		getnbTurn() = 0
 	 */
 	public void init(int sc, int sp); 
 
@@ -61,13 +63,13 @@ public interface GameEngService {
 	/* Operators */
 	
 	/* pre: 
-	 * 		spawn(G) require lemmingCreated(G) < sizeColony(G)
+	 * 		spawn(G) require getSpawned() < getSizeColony()
 	 * post: 
-	 * 		getLemmingCreated() = getLemmingCreated()@pre + 1
+	 * 		getSpawned() = getSpawned()@pre + 1
 	 *  	getNbTurn() = nbTurn()@pre
      *		getSaved() = saved()@pre
      *		getDead() = dead()@pre 
-     *		getLemmings() = lemmings()@pre.add(lemming)
+     *		getLemmings() = getLemmings()@pre.add(lemming)
 	 */
 	public void spawn(); 
 	
@@ -79,7 +81,7 @@ public interface GameEngService {
      *		getDead() == dead()@pre + 1
      *		getLemmings() == getLemmings()@pre.remove(l)
 	 */	
-	public void kill(Lemming l); 
+	public void kill(LemmingService l); 
 	
 	/* pre: 
 	 * 		getLemmings().contains(l)
@@ -89,7 +91,7 @@ public interface GameEngService {
      *		getDead() == dead()@pre
      *		getLemmings() == getLemmings()@pre.remove(l)	
 	 */
-	public void save(Lemming l); 
+	public void save(LemmingService l); 
 	
 	/* post: 
 	 * 		getNbTurn() == getNbTurns()@pre + 1
