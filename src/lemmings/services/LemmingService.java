@@ -17,7 +17,7 @@ public interface LemmingService {
 	
 	/* Initializers */
 	
-	/*	post: 
+	/* post: 
 	 * 		getType() = Type.WALKER
 	 *		getDirection() = Direction.RIGHT
 	 *		getX() = x
@@ -50,14 +50,14 @@ public interface LemmingService {
 	
 	/* post: 
 	 * 		if(getType == WALKER)
-	 * 			if(getGameEng().isObstacle(getX()@pre, getY()@pre + 1)	
+	 * 			if(!getGameEng().isObstacle(getX()@pre, getY()@pre + 1))
 	 *  			getType() = FALLER
 	 *				getDirection() = direction()@pre
 	 *				getX() = getX()@pre
 	 *		  		getY() = getY()@pre
 	 *  			gegetX() = getX()@pre
 	 *		  		getY() = getY()@pretFalling() =  0
-	 *			else if (getType() == RIGHT) 
+	 *			else if (getDirection() == RIGHT) 
 	 *  			if ((getGameEng().isObstacle(getX()@pre+1,getY()@pre-1) == true) || 
 	 *				   (getGameEng().isObstacle(getX()@pre+1,getY()@pre) == true && 
 	 *					getGameEng().isObstacle(getX()@pre+1,getY()@pre-2) == true)))
@@ -82,7 +82,7 @@ public interface LemmingService {
 	 *						getX() = getX()@pre + 1
 	 *		  				getY() = getY()@pre 
 	 *						getFalling() = 0
-     *			else if type(L) == LEFT then idem
+     *			else if direction(L) == LEFT then idem
 
      * 		if type(L) == FALLER then
      *			if (getGameEng().isObstacle(getX()@pre,getY()@pre+1) == true && getFalling() < 8)

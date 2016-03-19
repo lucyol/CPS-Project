@@ -22,13 +22,7 @@ public interface GameEngService {
 	 */		 	
 	public Score getScore(); 	
 	public int getNbTurn(); 	
-	public List<LemmingService> getLemmings(); 
-	
-	/*
-	 * pre: 
-	 * 		pre getLemming(G,i) require i >= 0 and card(lemmings(G)) > i
-	 */	
-	public LemmingService getLemming(int n); 	
+	public List<LemmingService> getLemmings(); 	
 	public int getSaved(); 	
 	public int getSpawned(); 
 	public int getDead(); 
