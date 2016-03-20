@@ -2,11 +2,13 @@ package lemmings.components;
 
 import lemmings.services.Direction;
 import lemmings.services.GameEngService;
+import lemmings.services.RequireGameEngService;
 import lemmings.services.LemmingService;
 import lemmings.services.Type;
 
 public class Lemming implements 
-	/*provides*/ LemmingService {
+	/*provides*/ LemmingService, 
+	/*requires*/ RequireGameEngService{
 	private Type type; 
 	private int x;
 	private int y;
@@ -54,6 +56,10 @@ public class Lemming implements
 		direction = Direction.RIGHT; 
 		gameEng = null; 
 		falling = 0; 
+	}
+	
+	public void bindGameEngService(GameEngService gameEng){
+		this.gameEng = gameEng; 
 	}
 	
 	public void changeDir(){

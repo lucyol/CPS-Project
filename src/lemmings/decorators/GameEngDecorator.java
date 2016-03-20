@@ -45,10 +45,6 @@ public class GameEngDecorator implements GameEngService {
 		return delegate.getLemmings();
 	}
 
-	public LemmingService getLemming(int n) {
-		return delegate.getLemming(n);
-	}
-
 	public int getSaved() {
 		return delegate.getSaved();
 	}

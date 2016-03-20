@@ -54,9 +54,9 @@ public class Level implements
 	public void init(int h, int w){
 		height = h; 
 		width = w;
-		nature = new Nature[h][w]; 
-		for(int i = 0; i < h; i++){
-			for(int j = 0; j < w; j++){
+		nature = new Nature[w][h]; 
+		for(int i = 0; i < w; i++){
+			for(int j = 0; j < h; j++){
 				nature[i][j] = Nature.EMPTY; 
 			}
 		}

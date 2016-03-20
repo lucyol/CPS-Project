@@ -16,7 +16,7 @@ public class GameEng implements
 	private LevelService level; 
 	private int sizeColony; 
 	private int spawnSpeed; 
-	private List<LemmingService> lemmings; 
+	private ArrayList<LemmingService> lemmings; 
 	private int dead; 
 	private int saved; 
 	private int spawned;
@@ -93,6 +93,7 @@ public class GameEng implements
 	public void spawn(){
 		LemmingService le = new Lemming(); 
 		le.init(level.getEntranceX(), level.getEntranceY()); 
+		((Lemming) le).bindGameEngService(this); 
 		lemmings.add(le); 
 		spawned = spawned + 1; 
 	}
@@ -109,14 +110,60 @@ public class GameEng implements
 	
 	public void step(){
 		
-		if(nbTurn % spawnSpeed == 0){
+		if(nbTurn % spawnSpeed == 0 && spawned < sizeColony){
 			spawn(); 
 		}
 		
-		for(LemmingService lem : lemmings ){
+		for(int i= 0; i< lemmings.size(); i++){
+			LemmingService lem = lemmings.get(i); 
 			lem.step(); 
+			
+			if(lem.getX() == level.getExitX() && lem.getY() == level.getExitY()){
+				save(lem); 
+			}
 		}
 		nbTurn = nbTurn + 1; 
+	}
+	
+	public void affichage(){
+		char [][] cases = new char[level.getWidth()][level.getHeight()]; 
+		
+		for(int i =0; i < level.getWidth(); i++ ){
+			for(int j=0; j < level.getHeight(); j++){
+				Nature cell = level.getNature(i, j); 
+				switch(cell){
+				case EMPTY: 
+					cases[i][j] = ' ';
+					break; 
+				case DIRT: 
+					cases[i][j] = 'D'; 
+					break; 
+				case METAL: 
+					cases[i][j] = 'M'; 
+					break; 
+				}
+			}
+		}
+		
+		cases[level.getEntranceX()][level.getEntranceY()] = 'E'; 
+		cases[level.getExitX()][level.getExitY()] = 'S';
+		
+		for(LemmingService lem : lemmings){
+			cases[lem.getX()][lem.getY()] = 'R'; 
+		}
+
+		//Printing
+		
+		StringBuilder sb = new StringBuilder(); 
+
+		for(int j =0; j < level.getHeight(); j++ ){
+			for(int i=0; i < level.getWidth(); i++){
+				sb.append(cases[i][j]); 
+			}
+			sb.append("\n"); 
+		}
+		
+		System.out.println(sb);
 	}
 
 }

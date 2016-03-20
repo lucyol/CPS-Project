@@ -18,4 +18,7 @@ public class Score {
 		return nbTurn;
 	}
 
+	public String toString(){
+		return "("+rate+","+nbTurn+")"; 
+	}
 }
